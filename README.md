@@ -14,10 +14,14 @@ A duração da simulação é determinada pela duração do período de operação do próp
 O número de replicação depende do grau de confiança com que desejamos trabalhar.
 A análise de dados de sistemas terminais pode ser dividida em 7 etapas:
 - Estabelecer as medidas de desempenho;
+	Tempo médio que um pedido aceito permanece no sistema;
 - Escolher a confiança estatísticas e a precisão com que se pretende trabalhar;
+	Confiança de 95% (a=0.05) e uma precisão tal que h* seja de no máximo 0.5 minuto.
 - Definir, a partir da observação do sistema real, o tempo de simulação;
 - Construir a "amostra piloto";
 - Determinar o número de replicações necessárias;
 - Rodar o modelo novamente;
 - Calcular o novo intervalo de confianaça;
+
+![ACD do exemplo de sistema terminal](https://raw.githubusercontent.com/leolima/Simulator/master/imagens/ACD-do-exemplo.jpg)
 
