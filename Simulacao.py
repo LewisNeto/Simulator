@@ -9,6 +9,13 @@ import matplotlib.pyplot as plt
 
 
 class Atendente(object):
-	
 	def __init__(self):
-		self.ocupada = false
+		self.ocupada = False
+	
+	def calculaTempoAtendimento(self):
+		print('Se ferrou, 10 minutos')
+		
+
+a = Atendente()
+
+print(a.calculaTempoAtendimento())
