@@ -27,7 +27,7 @@ A análise de dados de sistemas terminais pode ser dividida em 7 etapas:
 - Rodar o modelo novamente;
 - Calcular o novo intervalo de confiança;
 
-# LISTA À FAZER #
+# LISTA A FAZER #
 
 1 . Pseudo código em portugol
 
