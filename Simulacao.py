@@ -21,7 +21,7 @@ class Cliente(object):
 	def mostra(self):
 		print ("tempoChegada: ",self.tempoChegada)
 		print ("tempoInicioPre: ",self.tempoInicioPre)
-		print (" tempoFinalPre: ",self.tempoFinalPre)
+		print ("tempoFinalPre: ",self.tempoFinalPre)
 		print ("tempoInicioAnalise: ",self.tempoInicioAnalise)
 		print ("tempoFinalAnalise: ",self.tempoFinalAnalise)
 		print ("---------------")
@@ -48,7 +48,7 @@ class Gerente(object):
 		self.clienteSendoAnalisado = client
 		
 	def terminouAtendimento(self):
-		self.ocupada = False
+		self.ocupado = False
 		self.clienteSendoAnalisado = None
 
 class Atendente(object):
@@ -89,11 +89,12 @@ def executa(replicacao):
 		
 		#enquanto proximo item da timeline nao for maior ou igual a 690
 		while (tempo < 690):
-		
+			print tempo
 			#Se tiver gente na fila de preanalise, atendente desocupada
 			if(len(filaPreAnalise) > 0 and existeDesocupado(atendentes)):
+				
 				if(filaPreAnalise[0].tempoChegada < tempo):
-					filaPreAnalise[0].tempoInicioPre = tempo
+					filaPreAnalise[0].tempoInicioPre = tempo					
 					atendente = primeiraDesocupada(atendentes)
 					cliente = filaPreAnalise.pop(0)
 					cliente.tempoPreAnalise()
@@ -117,8 +118,9 @@ def executa(replicacao):
 				
 			#Se gerente tiver atendendo
 			if(gerente.ocupado == True):
-				print "entrou"
+				gerente.clienteSendoAnalisado.mostra()
 				if(gerente.clienteSendoAnalisado.tempoFinalAnalise < tempo):
+					
 					listaAnalisados.append(gerente.clienteSendoAnalisado)
 					gerente.terminouAtendimento()
 				
@@ -137,7 +139,8 @@ def iniciaFilaClientes(tempo,tempoCadaChegada):
 	qtClientes = int (tempo/tempoCadaChegada)
 	listaClientes = []
 	for i in xrange(qtClientes):
-		listaClientes.append(Cliente((i+1)*tempoCadaChegada))
+		tempochegada = ((i+1)*tempoCadaChegada[0])
+		listaClientes.append(Cliente(tempochegada))
 	return listaClientes
 		
 def iniciaAtendentes(numAtendentes):
