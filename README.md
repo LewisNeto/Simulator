@@ -32,8 +32,11 @@ A análise de dados de sistemas terminais pode ser dividida em 7 etapas:
 	- iii) O valor obtido é maior que a precisão definida 0.5 minuto. A partir deste podemos construir o seguinte intervalo de confiança para a média:
 	
 	![Intervalo de precisão](https://raw.githubusercontent.com/leolima/Simulator/master/imagens/intervalo-confianca.jpg)
-- Rodar o modelo novamente;
-- Calcular o novo intervalo de confiança;
+	- Se o valor obtido for maior que a precisão desejada, devemos aumentar o número de replicações, com a expressão:
+	
+	![Intervalo de precisão](https://raw.githubusercontent.com/leolima/Simulator/master/imagens/numero-de-replicacoes.jpg)
+- Rodar o modelo novamente com o número de replicações encontrado;
+- Calcular o novo intervalo de confiança, precisão e etc...;
 
 # LISTA A FAZER #
 
