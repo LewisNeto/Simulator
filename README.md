@@ -36,3 +36,15 @@ A análise de dados de sistemas terminais pode ser dividida em 7 etapas:
 [Python 2.7.12](https://www.python.org/ftp/python/2.7.12/python-2.7.12.msi) 
 [Numpy 1.11.1 x86 python 2.7](http://www.lfd.uci.edu/~gohlke/pythonlibs/dp2ng7en/numpy-1.11.1+mkl-cp27-cp27m-win32.whl)
 [Scipy 0.18.0 x86 python 2.7](http://www.lfd.uci.edu/~gohlke/pythonlibs/dp2ng7en/scipy-0.18.0-cp27-cp27m-win32.whl)
+
+upgrade pip:
+
+	python -m pip install --upgrade pip
+	
+instale a numpy
+	
+	pip install numpy-1.11.1+mkl-cp27-cp27m-win32.whl
+	
+instale a scipy
+	
+	pip install scipy-0.18.0-cp27-cp27m-win32.whl
