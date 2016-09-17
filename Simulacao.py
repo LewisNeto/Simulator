@@ -16,6 +16,25 @@ class Atendente(object):
 		print('Se ferrou, 10 minutos')
 		
 
-a = Atendente()
 
-print(a.calculaTempoAtendimento())
+def executa(replicacao):
+	numReplicacao = int(replicacao)
+	medias = range(numReplicacao)
+	
+	
+	
+	
+	for i in xrange(0,numReplicacao):
+		
+		media = 5.0
+		desvio_padrao = 2.2
+		tempo = numpy.random.normal(media, desvio_padrao, 1)
+		print "i :% ; tempo %",i,tempo
+		
+		#while (tempo < 690):
+			
+	
+	return "aaa"
+
+numReplicacao = 10
+desvio = executa(numReplicacao)
