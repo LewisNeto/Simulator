@@ -11,24 +11,50 @@ import matplotlib.pyplot as plt
 class Cliente(object):
 	def __init__(self,tempo):
 		self.tempoChegada = tempo
+		self.tempoInicioPre = 0
+		self.tempoPre = 0
+		self.tempoFinalPre = 0
+		self.tempoInicioAnalise = 0
+		self.tempoDeAnalise = 0
+		self.tempoFinalAnalise = 0
 		
-	def tempoPreAnalise():
-		self.tempoPre = self.tempoChegada + random.expovariate(1.0/8.0)
+	def mostra(self):
+		print ("tempoChegada: ",self.tempoChegada)
+		print ("tempoInicioPre: ",self.tempoInicioPre)
+		print (" tempoFinalPre: ",self.tempoFinalPre)
+		print ("tempoInicioAnalise: ",self.tempoInicioAnalise)
+		print ("tempoFinalAnalise: ",self.tempoFinalAnalise)
+		print ("---------------")
 		
-	def tempoAnalise():
-		self.tempoPre = numpy.random.triangular(0.5, 2.5, 5, size=None)
+	def tempoPreAnalise(self):
+		self.tempoPre = random.expovariate(1.0/8.0)
+		self.tempoFinalPre = self.tempoInicioPre + self.tempoPre
+		
+	def tempoAnalise(self):
+		self.tempoDeAnalise = numpy.random.triangular(0.5, 2.5, 5, size=None)
+		self.tempoFinalAnalise = self.tempoInicioAnalise + self.tempoDeAnalise
+		
+	def tempoInicioPre(self,tempo):
+		self.tempoInicioPre = tempo
 		
 		
 class Gerente(object):
-	def __init__(self,tempo):
+	def __init__(self):
 		self.ocupado = False
+		self.clienteSendoAnalisado = None
 		
 	def analisando(self, client):
+		self.ocupado = True
 		self.clienteSendoAnalisado = client
+		
+	def terminouAtendimento(self):
+		self.ocupada = False
+		self.clienteSendoAnalisado = None
 
 class Atendente(object):
 	def __init__(self):
 		self.ocupada = False
+		self.clienteSendoPreAnalisado = None
 	
 	def preAnalisando(self,client):
 		self.ocupada = True
@@ -55,49 +81,54 @@ def executa(replicacao):
 		
 		filaPreAnalise = iniciaFilaClientes(690,tempoCadaChegada)
 		filaAnalise = []
-		
-		#inicialmente a timeline tem o tempo de chegada de todos clientes
-		timeLine = iniciaTimeLine(filaPreAnalise)
-		
+		listaAnalisados = []
+				
 		print "i :% ; tempo %",i,tempoCadaChegada
+		#for i in xrange(len(filaPreAnalise)):
+		#	print "tempo:",filaPreAnalise[i].tempoChegada
 		
 		#enquanto proximo item da timeline nao for maior ou igual a 690
-		while (timeLine[0] < 690):
-			
+		while (tempo < 690):
+		
 			#Se tiver gente na fila de preanalise, atendente desocupada
 			if(len(filaPreAnalise) > 0 and existeDesocupado(atendentes)):
-				atendente = primeiraDesocupada(atendentes)
-				cliente = filaPreAnalise.pop(0)
-				cliente.tempoPreAnalise()
-				atendente.preAnalisando(cliente)
-				timeLine = adicionaEvento(timeLine,cliente.tempoPre)
+				if(filaPreAnalise[0].tempoChegada < tempo):
+					filaPreAnalise[0].tempoInicioPre = tempo
+					atendente = primeiraDesocupada(atendentes)
+					cliente = filaPreAnalise.pop(0)
+					cliente.tempoPreAnalise()
+					atendente.preAnalisando(cliente)
 				
 			#Se tiver cliente sendo preanalisado
 			if(clienteSendoPreAnalisado(atendentes)):
 				for i in xrange(len(atendentes)):
-					if( atendentes[i].clienteSendoPreAnalisado.tempoPre == timeLine[0] ):
+					if (atendentes[i].ocupada== True and atendentes[i].clienteSendoPreAnalisado.tempoFinalPre < tempo):
 						filaAnalise.append(atendentes[i].clienteSendoPreAnalisado)
 						atendentes[i].terminouDeAtender()
 			
 			#Se tiver fila de cliente pro gerente analisar e ele estiver desocupado
 			if(len(filaAnalise)> 0 and gerente.ocupado == False):
-				cliente = filaAnalise.pop(0)
-				gerente.clienteSendoAnalisado(cliente)
+				if(filaAnalise[0].tempoFinalPre < tempo):
+					filaAnalise[0].tempoInicioAnalise = tempo
+					cliente = filaAnalise.pop(0)
+					cliente.tempoAnalise()
+					cliente.mostra()
+					gerente.analisando(cliente)
 				
-			
-			tempo+=1
-	
+			#Se gerente tiver atendendo
+			if(gerente.ocupado == True):
+				print "entrou"
+				if(gerente.clienteSendoAnalisado.tempoFinalAnalise < tempo):
+					listaAnalisados.append(gerente.clienteSendoAnalisado)
+					gerente.terminouAtendimento()
+				
+				
+			tempo = tempo + 0.1
+		
+		print listaAnalisados
+		
 	return "aaa"
 	
-def iniciaTimeLine(filaPreAnalise):
-	timeLine=[]
-	for i in xrange(len(filaPreAnalise)):
-		timeLine.append(filaPreAnalise[i].tempoChegada)
-
-def adicionaEvento(timeline,tempoPreAnalise):
-	timeline.append(tempoPreAnalise)
-	timeline.sort()
-	return timeline
 	
 def organizaCrescente(array,atributo):
 	return sorted(array, key=lambda elem:elem.atributo)
@@ -106,7 +137,7 @@ def iniciaFilaClientes(tempo,tempoCadaChegada):
 	qtClientes = int (tempo/tempoCadaChegada)
 	listaClientes = []
 	for i in xrange(qtClientes):
-		listaClientes.append(Cliente(i*tempoCadaChegada))
+		listaClientes.append(Cliente((i+1)*tempoCadaChegada))
 	return listaClientes
 		
 def iniciaAtendentes(numAtendentes):
