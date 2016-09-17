@@ -20,9 +20,19 @@ A análise de dados de sistemas terminais pode ser dividida em 7 etapas:
 - Definir, a partir da observação do sistema real, o tempo de simulação;
 	![ACD do exemplo de sistema terminal](https://raw.githubusercontent.com/leolima/Simulator/master/imagens/ACD-do-exemplo.jpg)
 - Construir a "amostra piloto";
+	- Obtemos a "amostra piloto" ao rodar o modelo com poucas replicações (10);
 - Determinar o número de replicações necessárias;
+	- i) Através da amostra piloto podemos construir um intervalo de confiança para a média obtida. Com (a=0.05 e n=10) temos da tabela da distribuição de t de Student:
+	
 - Rodar o modelo novamente;
-- Calcular o novo intervalo de confianaça;
+- Calcular o novo intervalo de confiança;
 
+# LISTA À FAZER #
 
+1 . Pseudo código em portugol
 
+# Requerimentos #
+
+[Python 2.7.12](https://www.python.org/ftp/python/2.7.12/python-2.7.12.msi) 
+[Numpy 1.11.1 x86 python 2.7](http://www.lfd.uci.edu/~gohlke/pythonlibs/dp2ng7en/numpy-1.11.1+mkl-cp27-cp27m-win32.whl)
+[Scipy 0.18.0 x86 python 2.7](http://www.lfd.uci.edu/~gohlke/pythonlibs/dp2ng7en/scipy-0.18.0-cp27-cp27m-win32.whl)
