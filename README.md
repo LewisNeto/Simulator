@@ -24,10 +24,13 @@ A análise de dados de sistemas terminais pode ser dividida em 7 etapas:
 	![Amostra piloto](https://raw.githubusercontent.com/leolima/Simulator/master/imagens/tabela-amostra.jpg)
 - Determinar o número de replicações necessárias;
 	- i) Através da amostra piloto podemos construir um intervalo de confiança para a média obtida. Com (a=0.05 e n=10) temos da tabela da distribuição de t de Student:
+	
 	![Resultado da tabela T de Student](https://raw.githubusercontent.com/leolima/Simulator/master/imagens/res-t-student.jpg)
 	- ii) O tamanho da metade do intervalo fica:
+	
 	![Precisão](https://raw.githubusercontent.com/leolima/Simulator/master/imagens/precisao.jpg)
 	- iii) O valor obtido é maior que a precisão definida 0.5 minuto. A partir deste podemos construir o seguinte intervalo de confiança para a média:
+	
 	![Intervalo de precisão](https://raw.githubusercontent.com/leolima/Simulator/master/imagens/intervalo-confianca.jpg)
 - Rodar o modelo novamente;
 - Calcular o novo intervalo de confiança;
@@ -39,7 +42,9 @@ A análise de dados de sistemas terminais pode ser dividida em 7 etapas:
 # Requerimentos #
 
 [Python 2.7.12](https://www.python.org/ftp/python/2.7.12/python-2.7.12.msi) 
+
 [Numpy 1.11.1 x86 python 2.7](http://www.lfd.uci.edu/~gohlke/pythonlibs/dp2ng7en/numpy-1.11.1+mkl-cp27-cp27m-win32.whl)
+
 [Scipy 0.18.0 x86 python 2.7](http://www.lfd.uci.edu/~gohlke/pythonlibs/dp2ng7en/scipy-0.18.0-cp27-cp27m-win32.whl)
 
 upgrade pip:
