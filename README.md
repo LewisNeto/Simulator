@@ -58,3 +58,9 @@ instale a numpy
 instale a scipy
 	
 	pip install scipy-0.18.0-cp27-cp27m-win32.whl
+	
+instale a matplot
+	
+	python -m pip install -U pip setuptools
+	
+	python -m pip install matplotlib
