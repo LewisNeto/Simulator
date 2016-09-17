@@ -113,12 +113,12 @@ def executa(replicacao):
 					filaAnalise[0].tempoInicioAnalise = tempo
 					cliente = filaAnalise.pop(0)
 					cliente.tempoAnalise()
-					cliente.mostra()
+					#cliente.mostra()
 					gerente.analisando(cliente)
 				
 			#Se gerente tiver atendendo
 			if(gerente.ocupado == True):
-				gerente.clienteSendoAnalisado.mostra()
+				#gerente.clienteSendoAnalisado.mostra()
 				if(gerente.clienteSendoAnalisado.tempoFinalAnalise < tempo):
 					
 					listaAnalisados.append(gerente.clienteSendoAnalisado)
