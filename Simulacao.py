@@ -127,10 +127,15 @@ def executa(replicacao):
 				
 			tempo = tempo + 0.1
 		
-		print listaAnalisados
+		medias.append(calculaMedia(listaAnalisados))
 		
 	return "aaa"
 	
+def calculaMedia(lista):
+	soma = 0
+	for i in xrange(len(lista)):
+		soma = soma + lista[i]		
+	return (soma/(len(lista)))
 	
 def organizaCrescente(array,atributo):
 	return sorted(array, key=lambda elem:elem.atributo)
